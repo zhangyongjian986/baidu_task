@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>模拟报纸排版</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        body{
+           background:  #666;
+        }
+        #container{
+            width:980px;
+            height:1386px;
+            border:1px solid #fff;
+            background: #fff;
+            margin:150px auto;
+        }
+        .font{
+            font-size: 12px;
+        }
+        .lt{
+            float:left;
+        }
+        .width{
+            width:892px;
+            margin:0 auto;
+            border:1px solid #fff;
+        }
+        #top_bar{
+            height:61px;
+            border-bottom:2px solid #938e8c;
+        }
+        #top_bar_red{
+            width:110px;
+            height: 61px;
+            background: #d45d5c;
+            float:left;
+            position:absolute;
+        }
+        #top_bar_red div{
+            color:#fff;
+            margin:42px 0 0 5px;
+            font-family: 黑体;
+        }
+        .right{
+            float:right;
+        }
+        #top_bar_date{
+            width:50px;
+            color:#d45d5c;
+            font-family: 黑体;
+            margin: 45px 0 0 0;
+        }
+        #main_1{
+            margin-top:30px;
+            border-top:1px solid #fff;
+            position: relative;
+        }
+        #main_1 img{
+            width:641px;
+            height:301px;
+        }
+        .mask{
+            position:absolute;
+            width:191px;
+            height:301px;
+
+            top:0;
+            opacity: 0.5;
+        }
+        #mask_1{
+            background: #75b86b;
+        }
+        #mask_2{
+            right:251px;
+            background: #cc8091;
+        }
+        #right_bar{
+            width:203px;
+            height:301px;
+            border-top:2px solid #cc8091;
+            font-family: 微软雅黑;
+            position: relative;
+        }
+        #right_bar_top p {
+            color: #000000;
+            line-height: 40px;
+            text-decoration: underline;
+            font-size: 24px;
+            font-family: 微软雅黑;
+            font-variant:small-caps;
+            text-transform: capitalize;
+        }
+        #right_bar div{
+            font-size:12px;
+            font-family: 楷体;
+            line-height: 10px;
+        }
+        #right_bar_middle{
+            font-size: 116px;
+            color:#75b86b;
+            height:116px;
+        }
+        #right_bar span{
+            color:#cc8091;
+        }
+        #right_bar #sp1{
+            font-size: 55px;
+        }
+        #right_bar #sp2{
+            font-size: 28px;
+            position: absolute;
+            bottom: 40px;
+            right: 70px;
+        }
+        #right_bar #sp3{
+            font-size: 12px;
+        }
+        #main_2_text{
+            width:680px;
+            height: 200px;
+            margin-top:30px;
+            line-height:20px;
+            font-family: 微软雅黑;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        #main_2_text span{
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        #main_2_text1{
+            width:220px;
+            height: 200px;
+            padding: 0 20px;
+            line-height:20px;
+            vertical-align: middle;
+        }
+        #main_2_text1 span{
+            color: #75b86b;
+        }
+        #main_2_text2{
+            width:180px;
+            height: 200px;
+            padding:0 10px;
+        }
+        #main_2_text2 span{
+            color:#d2994f;
+        }
+        #main_2_text3{
+            height: 200px;
+            width: 190px;
+            padding:0 10px;
+        }
+        #main_2_text3 span{
+            color:#cc7680;
+        }
+        #main_3{
+            margin-top: 50px;
+            width:892px;
+            height:640px;
+        }
+        #main_3_left{
+            width:415px;
+            position: relative;
+            font-family: 微软雅黑;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        #main_3_left #sp4{
+            font-size: 72px;
+            font-family: 黑体;
+            margin-right: 20px;
+        }
+        #main_3_left hr{
+            height: 2px;
+            background: #333;
+            margin-bottom: 20px;
+        }
+        #main_3_left p{
+        }
+        .big{
+            font-size: 42px;
+            color:#11456b;
+            font-family: 黑体;
+        }
+        #front{
+            color:#11456b;
+            font-size: 33px;
+            font-family: 黑体;
+        }
+        .yellow_color{
+            color:#f5e327;
+         }
+         #p_first:first-letter{
+             font-size:70px;
+             float: left;
+          }
+         #main_3_left img{
+             width:170px;
+             height:290px;
+             /*position: absolute;
+             left:220px;
+             top:320px;*/
+             margin:18px 0 20px 18px;
+             float:right;
+         }
+         .main_3_p{
+             text-indent:2em;
+         }
+         #main_3_right{
+             position: relative;
+         }
+        #main_3_right img{
+            width:458px;
+            height: 275px;
+        }
+        #main_3_right #img_mask{
+            width:458px;
+            height: 61px;
+            background: #000;
+            position: absolute;
+            top:214px;
+            opacity: 0.7;
+            line-height: 61px;
+        }
+        #img_mask_1{
+            width:3px;
+            height: 44px;
+            background:#72b16a;
+            position: absolute;
+            left:30px;
+            top:8.5px;
+        }
+        #img_mask_2{
+            color:#ffffff;
+            font-size: 26px;
+            position: absolute;
+            left:40px;
+        }
+        #img_mask_3{
+            font-family: 微软雅黑;
+            font-size: 12px;
+            word-spacing: 8px;
+            color: #72b16a;
+            position: absolute;
+            left:150px;
+        }
+        #main_3_right_bottom_container{
+            position: relative;
+            width: 459px;
+            height: 318px;
+            margin-top: 20px;
+        }
+        #main_3_right_bottom {
+            width: 459px;
+            height: 318px;
+            background: #cc8091;
+            opacity: 0.1;
+        }
+        #main_3_right_bottom_p{
+            position: absolute;
+            top:0;
+            padding:30px 20px 0 20px;
+            line-height: 24px;
+        }
+        .angle{
+            width: 0;
+            height: 0;
+            border-top:0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid #11456b;
+            display: inline-block;
+            margin-right: 10px;
+            line-height: 24px;
+        }
+        .lp{
+            font-family: 宋体;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #5a5b5b;
+        }
+        .rip{
+            font-style: oblique;
+            font-family: 微软雅黑;
+            font-size: 12px;
+            color: #5a5b5b;
+        }
+        #zero{
+            width:250px;
+            height:160px;
+            font-size: 12px;
+            background: #d45d5c;
+            position: absolute;
+            left:0px;
+            bottom:0px;
+        }
+        .zero{
+            font-family: 微软雅黑;
+            font-size: 110px;
+            color: #ffffff;
+            margin-left: 10px;
+        }
+        .zero_right{
+            width: 2px;
+            height: 86px;
+            background: #ffffff;
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+        }
+        .zero_right_div{
+            position: absolute;
+            bottom: 40px;
+            left: 85px;
+            color: #ffffff;
+            font-family: 黑体;
+        }
+        .zero_right_div .zero_right_p{
+            font-size: 21px;
+            font-style: oblique;
+        }
+        #bottom_right{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            height:160px;
+            width: 195px;
+            font-family: 黑体;
+            line-height: 16px;
+            color: #5a5b5b;
+        }
+        .yinhao_1{
+            color: #d45d5c;
+            font-size: 72px;
+            float: left;
+            margin:18px 5px -20px -40px;
+        }
+        .yinhao_2{
+            color: #d45d5c;
+            font-size: 72px;
+            float: left;
+            margin: 15px 0 5px 150px;
+        }
+        #bottom_bar{
+            width:892px;
+            height: 30px;
+            border-top: 1px solid #938e8c;
+            margin-top: 10px;
+        }
+        #bottom_bar p{
+            font-family: 黑体;
+            color: #d45d5c;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<!--大的容器-->
+<div id="container">
+    <!--顶栏-->
+    <div id="top_bar" class="width">
+        <div id="top_bar_red">
+            <div class="font lt">ife.baidu.com</div>
+        </div>
+        <div id="top_bar_date" class="right font">2016.08</div>
+    </div>
+    <!--主要1-->
+    <div id="main_1" class="width">
+        <img src="2016_innovation_day_video.jpg">
+        <div id="mask_1" class="mask"></div>
+        <div id="mask_2" class="mask"></div>
+        <div id="right_bar" class="right">
+            <div id="right_bar_top">
+                <p>about</p>
+                   <p>technologe</p>
+                <div><i>About technologe about technology about technology</i>ss</div>
+            </div>
+            <p id="right_bar_middle"><i>700</i></p>
+            <span id="sp1"><i>3.2</i></span>
+            <span id="sp2">css</span>
+            <span id="sp3">cssssssssccss</span>
+        </div>
+    </div>
+    <!--主要2-->
+    <div id="main_2" class="width">
+        <div id="main_2_text" >
+            <div id="main_2_text1" class="lt">
+                <span><p>What</p></span>
+                <p>前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前
+                    端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前
+                    前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习
+                    前端前端学习学习前端前端前端前端学习学习前端前端前端
+                </p>
+            </div>
+            <div id="main_2_text2" class="lt">
+                <span><p>When</p></span>
+                <p>前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习
+                    前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学学习前端前端学学习前端前端学
+                    学习前端前端学学习前端前端学学习前端前端学
+            </div>
+            <div id="main_2_text3" class="lt">
+                <span><p>How</p></span>
+                <p>前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习学习
+                    前端前端学习学习前端前端学习学习前端前端学习学习前端前端学习</p>
+            </div>
+        </div>
+    </div>
+    <!--主要3-->
+    <div id="main_3" class="width">
+        <div id="main_3_left" class="lt">
+            <p class="big"><span id="sp4" class="yellow_color"><i><strong>THE</strong></i></span>TECHNOLOGE</p>
+            <p class="big">OF FRONT</p>
+            <p id="front">前端技术领域</p>
+            <hr/>
+            <p id="p_first" ><span  class="yellow_color">前</span>端前端前端前端前端前端前端前端前端前端前端前端前
+                端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前前端前端前端
+                前端前端前端前端前端前端前前端前
+                端前前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前
+                端前端前端前端前端前端前端前端前端前<img src="spfg.jpg" width=""/>端前端前端前端前端前端前端前端前端
+                前端前端 前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                端前端前前端前端端前端前端前端前端前端前端
+                前端前端前</p>
+            <p class="main_3_p">前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+                前</p>
+            <p class="main_3_p">前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前
+                前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前前端前端前端前端前端前端前端前端前端前
+                端前端前端前端前端前端前端前端前端前端前端前</p>
+        </div>
+        <div id="main_3_right" class="right">
+            <img src="NFV.jpg"/>
+            <div id="img_mask">
+                <div id="img_mask_1" class="lt"></div>
+                <span id="img_mask_2" class="lt">前端技术</span>
+                <span id="img_mask_3"><i>前端技术前端技术</i></span>
+            </div>
+            <div id="main_3_right_bottom_container">
+               <div id="main_3_right_bottom">
+               </div>
+                <div id="main_3_right_bottom_p">
+                    <p class="lt lp"><span class="angle lt"></span>前端技术前端前端前端前端前端.................</p><p class="right rip">前端</p>
+                    <p class="lt lp"><span class="angle lt"></span>前端技术前端前端前端前端前端.................</p><p class="right rip">前端</p>
+                    <p class="lt lp"><span class="angle lt"></span>前端技术前端前端前端前端前端.................</p><p class="right rip">前端</p>
+                </div>
+                <div id="zero" class="lt">
+                    <div class="zero lt">0</div>
+                    <div class="zero_right lt"></div>
+                    <div class="zero_right_div lt">
+                        <p class="zero_right_p">ONE TWO</p>
+                        <p class="zero_right_p">THREE FOUR FIVE</p>
+                        <p>hello world hello world hello world </p>
+                    </div>
+                </div>
+                <div id="bottom_right" class="right">
+                    <p><span class="yinhao_1">“</span>
+                        world hello world
+                        hello world hello world
+                        hello world hello world
+                        hello world hello world
+                        hello world hello world
+                        hello world<span class="yinhao_2">”</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底栏-->
+    <div id="bottom_bar" class="width">
+        <p class="right">ife.baidu.com</p>
+    </div>
+</div>
+</body>
+</html>
