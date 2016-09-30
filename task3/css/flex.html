@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        .parent{
+            display: flex;
+            height: 300px;
+            background: #ff0;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background: #f00;
+            margin: auto;
+        }
+        .flex-container{
+            display: flex;
+            flex-direction:row;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+
+    <ul class="flex-container">
+        <li class="flex-items">1</li>
+        <li class="flex-items">2</li>
+        <li class="flex-items">3</li>
+        <li class="flex-items">4</li>
+        <li class="flex-items">5</li>
+        <li class="flex-items">6</li>
+    </ul>
+</body>
+</html>
