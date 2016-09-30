@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            body{
+                font:24px Helvetica;
+                background: #999;
+            }
+            #container{
+                display: -webkit-flex;
+                flex-flow:row;
+                -webkit-flex-flow:row;
+                flex-flow: row;
+                min-height: 800px;
+                margin:0;
+                padding:0;
+            }
+            #article{
+                margin: 4px;
+                padding:5px;
+                border: 1px solid #cccc33;
+                border-radius: 7pt;
+                background: #dddd88;
+                -webkit-flex: 3 1 60%;
+                flex: 3 1 60%;
+                -webkit-order: 2;
+                order: 2;
+            }
+            #nav{
+                margin: 4px;
+                padding: 5px;
+                border: 1px solid #8888bb;
+                border-radius: 7pt;
+                background: #ccccff;
+                -webkit-flex: 1 6 20%;
+                flex: 1 6 20%;
+                -webkit-order: 1;
+                order: 1;
+            }
+            #aside{
+                margin: 4px;
+                padding: 5px;
+                border: 1px solid #8888bb;
+                border-radius: 7pt;
+                background: #ccccff;
+                -webkit-flex: 1 6 20%;
+                flex: 1 6 20%;
+                -webkit-order: 3;
+                order: 3;
+            }
+            .header,.footer{
+                display: block;
+                margin: 4px;
+                padding: 5px;
+                min-height: 100px;
+                border: 1px solid #eebb55;
+                border-radius: 7pt;
+                background: #ffeebb;
+            }
+            @media all and (max-width: 640px){
+                #container{
+                    -webkit-flex-direction:column ;
+                    -webkit-flex-flow: column;
+                }
+                #article,#nav,#aside {
+                    -webkit-order: 0;
+                    order:0;
+                }
+                #nav,#aside,.header,.footer{
+                    min-height:50px;
+                    max-height: 50px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    <header class="header">header</header>
+    <div id="container">
+        <article id="article">article</article>
+        <nav id="nav">nav</nav>
+        <aside id="aside">aside</aside>
+    </div>
+    <footer class="footer">footer</footer>
+    </body>
+</html>
