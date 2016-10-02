@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <style>
+        .aqi-chart-wrap{
+            min-width:1280px;
+            min-height: 800px;
+            background: #eee;
+            border: 1px solid #999;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+        }
+        .title{
+            font-family: "Adobe 宋体 Std L";
+            color: #999;
+        }
+        @keyframes heightAnim {
+            0% {
+                bottom: -300px;
+            }
+            100% {
+                bottom: 0;
+            }
+
+        }
+        .aqi-bar{
+            position: absolute;
+            bottom: 0;
+            animation: heightAnim .5s ease-in-out;
+            border: 1px solid #333;
+        }
+        .lt{
+            float: left;
+        }
+    </style>
+    <script src="task.js"></script>
+</head>
+<body>
+<fieldset id="form-gra-time">
+    <legend>请选择日期粒度：</legend>
+    <label><span>日</span><input name="gra-time" value="day" type="radio" checked="checked"></label>
+    <label><span>周</span><input name="gra-time" value="week" type="radio"></label>
+    <label><span>月</span><input name="gra-time" value="month" type="radio"></label>
+
+
+    <legend>请选择查看的城市：</legend>
+    <select id="city-select">
+
+    </select>
+</fieldset>
+
+<div class="aqi-chart-wrap">
+    <h3 class="title">...市的天气报表</h3>
+</div>
+<script src="task10.js"></script>
+</body>
+</html>
